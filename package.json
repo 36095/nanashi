@@ -1,0 +1,39 @@
+{
+  "name": "nanashi",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "Un paquete ligero de utilidades para usar en mis proyectos privados.",
+  "author": "Mario Plaza (36095) <me@mplaza.cl>",
+  "license": "MIT",
+  "homepage": "https://github.com/36095/nanashi#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/36095/nanashi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/36095/nanashi/issues"
+  },
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "release": "bumpp",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "25.9.1",
+    "@typescript/native-preview": "7.0.0-dev.20260509.2",
+    "bumpp": "11.1.0",
+    "tsdown": "0.22.2",
+    "typescript": "6.0.3",
+    "vitest": "4.1.8"
+  }
+}
