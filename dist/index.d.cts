@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------
-// nanashi v0.0.1
+// nanashi v0.0.0
 // This code is part of https://github.com/36095/nanashi#readme
 //
 // Author: Mario Plaza <mario@mplaza.cl>
