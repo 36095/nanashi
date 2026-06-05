@@ -31,3 +31,4 @@ declare function clear(): void;
 //#endregion
 export { DateHandler, type LogLevel, type LogType, clear, colors, levelPriority, logLevel, logger };
 // made with <3 in chile
+//# sourceMappingURL=index.d.cts.map

@@ -2,7 +2,7 @@
   "name": "nanashi",
   "type": "module",
   "version": "0.0.1",
-  "description": "Un paquete ligero de utilidades para usar en mis proyectos privados.",
+  "description": "A lightweight utility package used in some of my projects.",
   "author": "Mario Plaza (36095) <me@mplaza.cl>",
   "contributors": [
   ],

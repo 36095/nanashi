@@ -23,6 +23,8 @@ export default defineConfig({
 // Date: June 04, 2026
 // License: MIT
 //------------------------------------------------------------------------------`,
-
+  hash: true,
+  sourcemap: true,
+  write: true,
   // ...config options
 });
