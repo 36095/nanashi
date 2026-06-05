@@ -1,7 +1,7 @@
 {
   "name": "nanashi",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A lightweight utility package used in some of my projects.",
   "author": "Mario Plaza (36095) <me@mplaza.cl>",
   "contributors": [],
@@ -29,7 +29,9 @@
     "dev": "tsdown --watch",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
-    "release": "bumpp package.json --commit \"chore: bump version to v%s\" --tag --all",
+    "release":"npm run release:bump && npm run release:publish-github",
+    "release:bump": "bumpp package.json --commit \"chore: bump version to v%s\" --tag --all",
+    "release:publish-github": "node -e \"const { execSync } = require('child_process'); const latestTag = execSync('git describe --tags --abbrev=0', { encoding: 'utf8' }).trim(); console.log(`Creating GitHub release for tag: ${latestTag}`); execSync(`gh release create ${latestTag} --generate-notes`, { stdio: 'inherit' }); console.log(`GitHub release created for ${latestTag}`);\"",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
