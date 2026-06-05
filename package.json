@@ -29,7 +29,7 @@
     "dev": "tsdown --watch",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
-    "release": "bumpp package.json --commit \"chore: bump version to v%s\" --tag --all --run \"npm run build && git push && git push --tags && node -e \\\"const pkg = require('./package.json'); const { execSync } = require('child_process'); execSync('gh release create v' + pkg.version + ' --generate-notes', { stdio: 'inherit' }); console.log('GH Release created for v' + pkg.version);\\\"\"",
+    "release": "bumpp package.json --commit \"chore: bump version to v%s\" --tag --all",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
