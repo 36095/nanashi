@@ -24,7 +24,5 @@ export default defineConfig({
 // License: MIT
 //------------------------------------------------------------------------------`,
   hash: true,
-  sourcemap: true,
-  write: true,
   // ...config options
 });
