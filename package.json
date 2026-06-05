@@ -4,8 +4,7 @@
   "version": "0.0.1",
   "description": "A lightweight utility package used in some of my projects.",
   "author": "Mario Plaza (36095) <me@mplaza.cl>",
-  "contributors": [
-  ],
+  "contributors": [],
   "license": "MIT",
   "homepage": "https://github.com/36095/nanashi#readme",
   "repository": {
@@ -31,6 +30,7 @@
     "test": "vitest",
     "typecheck": "tsc --noEmit",
     "release": "bumpp",
+    "postrelease": "git push && git push --tags && gh release create $npm_package_version --generate-notes",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
