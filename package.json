@@ -28,6 +28,7 @@
     "build": "tsdown",
     "dev": "tsdown --watch",
     "test": "vitest",
+    "test:date": "cross-env NODE_OPTIONS='--no-deprecation' tsx ./tests/test-date.ts",
     "typecheck": "tsc --noEmit",
     "release": "npm run release:bump && npm run release:publish-github",
     "release:bump": "bumpp package.json --commit \"chore: bump version to v%s\" --tag --all",
@@ -35,12 +36,13 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@types/node": "25.9.1",
-    "@typescript/native-preview": "7.0.0-dev.20260509.2",
-    "bumpp": "11.1.0",
-    "tsdown": "0.22.2",
-    "typescript": "6.0.3",
-    "vitest": "4.1.8"
+    "@types/node": "26.5.1",
+    "@typescript/native-preview": "7.0.0-dev.20260707.2",
+    "bumpp": "12.3.0",
+    "cross-env": "10.1.0",
+    "tsdown": "0.23.0",
+    "typescript": "7.0.2",
+    "vitest": "5.0.0"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
