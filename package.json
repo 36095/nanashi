@@ -50,7 +50,6 @@
     "build": "tsdown",
     "dev": "tsdown --watch",
     "test": "vitest",
-    "test:date": "cross-env NODE_OPTIONS='--no-deprecation' tsx ./tests/test-date.ts",
     "typecheck": "tsc --noEmit",
     "release": "npm run release:bump && npm run release:publish-github",
     "release:bump": "bumpp package.json --commit \"chore: bump version to v%s\" --tag --all",
