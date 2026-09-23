@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------
-// @36095/nanashi v0.0.2-prerelease.1
+// @36095/nanashi v0.0.2
 // This code is part of https://github.com/36095/nanashi
 //
 // Author: Mario Plaza <me@mplaza.cl>

@@ -1,8 +1,13 @@
 import type { LogLevel, LogType } from '../types';
 import { DateHandler } from './DateHandler';
 
-// Nivel de logging configurable
-export let logLevel: LogLevel = 'info';
+export interface LoggerConfig {
+  /** Nivel de logging global */
+  level?: LogLevel;
+  // Aquí se pueden agregar futuras configuraciones (ej. customColors, outputFormat, etc.)
+}
+
+export let logLevel: LogLevel = (process.env.LOG_LEVEL as LogLevel) || 'info';
 
 export const levelPriority: Record<LogLevel, number> = {
   silly: 0,
@@ -25,7 +30,6 @@ export const colors: Record<LogType, string> = {
   dim_white: '\x1b[2m', // Dim White #ddd
 };
 
-// Registro para asegurar que cada aviso se muestre solo una vez
 const warnedMessages = new Set<string>();
 
 function deprecation_warning(func: string, alt: string): void {
@@ -39,18 +43,29 @@ function deprecation_warning(func: string, alt: string): void {
 
 export default class Logger {
   /**
-   * @param level LogLevel to output
-   * @param message Message to output
-   * @returns {void} void
+   * Inicializa o actualiza la configuración global del Logger.
+   * @param config - Objeto de configuración del logger.
+   */
+  public static defineConfig(config: LoggerConfig): void {
+    if (config.level !== undefined) {
+      logLevel = config.level;
+    }
+  }
+
+  /**
+   * Configura el nivel de logging globalmente de forma programática (shorthand).
+   * @param level - Nuevo nivel de log.
+   */
+  public static setLogLevel(level: LogLevel): void {
+    Logger.defineConfig({ level });
+  }
+
+  /**
+   * @param level - LogLevel to output
+   * @param message - Message to output
+   * @returns {void}
    */
   public static log(level: LogLevel = 'silly', message: string): void {
-    // Nota: En tu código original, `logLevel = 'silly'` sobrescribe incondicionalmente
-    // la asignación anterior. Asegúrate de que este sea el comportamiento deseado.
-    if (!process.env.NODE_ENV?.toLowerCase().startsWith('dev')) {
-      logLevel = 'warning';
-    }
-    // logLevel = 'silly';
-
     if (levelPriority[level] < levelPriority[logLevel]) {
       return;
     }
@@ -66,7 +81,7 @@ export default class Logger {
 
   /**
    * Clear the screen
-   * @returns {void} void
+   * @returns {void}
    */
   public static clear(): void {
     process.stdout.write('\x1b[H\x1b[2J\x1b[3J');
@@ -75,21 +90,15 @@ export default class Logger {
 
   /**
    * Prints the provided `message` to stderr and exits the process
-   * @param message Message to print
-   * @param error Optional error to print
+   * @param message - Message to print
+   * @param error - Optional error to print
    * @returns {never}
    */
-  public static fatal(
-    message: string,
-    error?: Error | string | undefined
-  ): never {
-    if (error) {
-      Logger.log('error', `[Fatal]: ${message} \n ${error}\n`);
-      process.stderr.write(`[Fatal]: ${message} \n${error}\n`);
-    } else {
-      Logger.log('error', `[Fatal]: ${message}\n`);
-      process.stderr.write(`[Fatal]: ${message} \n`);
-    }
+  public static fatal(message: string, error?: Error | string): never {
+    const errorMsg =
+      error ? `[Fatal]: ${message} \n ${error}\n` : `[Fatal]: ${message}\n`;
+    Logger.log('error', errorMsg);
+    process.stderr.write(errorMsg);
     process.exit(1);
   }
 }
@@ -115,17 +124,9 @@ export function clear(): void {
  * Prints the provided `message` to stderr and exits the process
  * @deprecated Use {@link Logger.fatal} instead
  */
-export function fatal(
-  message: string,
-  error?: Error | string | undefined
-): never {
+export function fatal(message: string, error?: Error | string): never {
   deprecation_warning('fatal', 'Logger.fatal');
   Logger.fatal(message, error);
 }
-// clear();
-// log('info', 'hello');
-// log('info', 'hello');
-// log('info', 'hello');
-// fatal('fatal');
 
 export { log as logger };

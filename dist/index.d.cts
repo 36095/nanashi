@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------
-// @36095/nanashi v0.0.2-prerelease.1
+// @36095/nanashi v0.0.2
 // This code is part of https://github.com/36095/nanashi
 //
 // Author: Mario Plaza <me@mplaza.cl>
@@ -13,5 +13,5 @@ import { DateHandler } from "./classes/DateHandler.cjs";
 import { LogLevel, LogType } from "./types.cjs";
 import Logger, { clear, colors, fatal, levelPriority, log, logLevel } from "./classes/Logger.cjs";
 import { RelativeDate } from "./classes/RelativeDate.cjs";
-export { DateHandler, type LogLevel, type LogType, Logger, RelativeDate, clear, clear as cls, colors, fatal, levelPriority, log, log as logger, logLevel };
+export { DateHandler, type LogLevel, type LogType, Logger, Logger as default, RelativeDate, clear, clear as cls, colors, fatal, levelPriority, log, log as logger, logLevel };
 // made with ❤️ in chile

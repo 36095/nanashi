@@ -6,6 +6,7 @@ export default defineConfig({
   unbundle: true,
   outputOptions: {
     name: nanashi_name[0].toUpperCase() + nanashi_name.substring(1),
+    exports: 'named',
   },
   exports: true,
   format: ['cjs', 'esm'],

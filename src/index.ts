@@ -26,3 +26,5 @@ export {
   logger,
 };
 export { DateHandler };
+
+export default Logger;
