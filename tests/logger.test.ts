@@ -1,6 +1,7 @@
 // tests/logger.test.ts
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import Logger, { levelPriority } from '../src/classes/Logger.ts';
 
 describe('Logger', () => {
   let originalEnv: NodeJS.ProcessEnv;
@@ -22,9 +23,7 @@ describe('Logger', () => {
   it('debería escribir un mensaje info con formato correcto (HH:MM:SS) cuando logLevel es info', async () => {
     mockWrite.mockClear();
 
-    const { default: logger } = await import('../src/logger');
-
-    logger('info', 'Hola');
+    Logger.log('info', 'Hola');
 
     expect(mockWrite).toHaveBeenCalledTimes(1);
     const call = mockWrite.mock.calls[0][0] as string;
@@ -37,9 +36,7 @@ describe('Logger', () => {
   it('debería filtrar un mensaje silly cuando logLevel es info', async () => {
     mockWrite.mockClear();
 
-    const { default: logger } = await import('../src/logger');
-
-    logger('silly', 'Hola Silly'); // logLevel es 'info' (2), silly es (0), 0 < 2 -> filtra
+    Logger.log('silly', 'Hola Silly'); // logLevel es 'info' (2), silly es (0), 0 < 2 -> filtra
 
     expect(mockWrite).toHaveBeenCalledTimes(0); // No debería escribirse
   });
@@ -48,11 +45,9 @@ describe('Logger', () => {
     mockWrite.mockClear();
     process.env.NODE_ENV = 'production';
 
-    const { default: logger } = await import('../src/logger');
-
-    logger('debug', 'msg debug');
-    logger('success', 'msg success');
-    logger('warning', 'msg warning');
+    Logger.log('debug', 'msg debug');
+    Logger.log('success', 'msg success');
+    Logger.log('warning', 'msg warning');
 
     expect(mockWrite).toHaveBeenCalledTimes(1); // Solo warning debe escribirse
     const call = mockWrite.mock.calls[0][0] as string;
@@ -73,18 +68,15 @@ describe('Logger', () => {
   it('debería limpiar la pantalla con la secuencia correcta', async () => {
     mockWrite.mockClear();
 
-    const { clear } = await import('../src/logger');
-
-    clear();
+    Logger.clear();
 
     expect(mockWrite).toHaveBeenCalledWith('\x1b[H\x1b[2J\x1b[3J');
   });
 
   it('debería tener prioridades correctas', async () => {
-    const { levelPriority } = await import('../src/logger');
-
-    expect(levelPriority.silly).toBeLessThan(levelPriority.debug);
     expect(levelPriority.debug).toBe(levelPriority.success);
+    expect(levelPriority.success).toBeOneOf([levelPriority.debug]);
+    expect(levelPriority.silly).toBeLessThan(levelPriority.debug);
     expect(levelPriority.info).toBeLessThan(levelPriority.warning);
     expect(levelPriority.warning).toBeLessThan(levelPriority.error);
   });

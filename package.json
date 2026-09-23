@@ -3,10 +3,32 @@
   "type": "module",
   "version": "0.0.2-prerelease.1",
   "description": "A lightweight utility package used in some of my projects.",
-  "author": "Mario Plaza (36095) <me@mplaza.cl>",
-  "contributors": [],
+  "author": {
+    "name": "Mario Plaza",
+    "email": "me@mplaza.cl",
+    "url": "https://mplaza.cl"
+  },
+  "contributors": [
+    {
+      "name": "Mario Plaza",
+      "email": "me@mplaza.cl",
+      "url": "https://mplaza.cl"
+    },
+    {
+      "name": "36095",
+      "email": "36095@mplaza.cl",
+      "url": "https://mplaza.cl/github"
+    }
+  ],
+  "maintainers": [
+    {
+      "name": "Mario Plaza",
+      "email": "me@mplaza.cl",
+      "url": "https://mplaza.cl"
+    }
+  ],
   "license": "MIT",
-  "homepage": "https://github.com/36095/nanashi#readme",
+  "homepage": "https://github.com/36095/nanashi",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/36095/nanashi.git"
@@ -37,14 +59,16 @@
   },
   "devDependencies": {
     "@types/node": "26.5.1",
-    "@typescript/native-preview": "7.0.0-dev.20260707.2",
     "bumpp": "12.3.0",
     "cross-env": "10.1.0",
     "tsdown": "0.23.0",
     "typescript": "7.0.2",
     "vitest": "5.0.0"
   },
+  "allowScripts": {
+    "esbuild": true
+  },
+  "types": "./dist/index.d.cts",
   "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.cts"
+  "module": "./dist/index.mjs"
 }
