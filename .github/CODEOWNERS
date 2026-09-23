@@ -1,0 +1,5 @@
+# .github/CODEOWNERS
+# All changes require review from a core maintainer
+/.github/ @36095
+*.ts @36095
+/*.json @36095
