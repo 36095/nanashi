@@ -1,33 +1,17 @@
 //------------------------------------------------------------------------------
-// nanashi v0.0.0
-// This code is part of https://github.com/36095/nanashi#readme
+// @36095/nanashi v0.0.2-prerelease.1
+// This code is part of https://github.com/36095/nanashi
 //
-// Author: Mario Plaza <mario@mplaza.cl>
-// Contributors: none
-// Date: June 04, 2026
+// Author: Mario Plaza <me@mplaza.cl>
+// Contributors: 
+//   - Mario Plaza <me@mplaza.cl> (https://mplaza.cl),
+//   - 36095 <36095@mplaza.cl> (https://mplaza.cl/github)
+// Build Date: September 23, 2026
 // License: MIT
 //------------------------------------------------------------------------------
-//#region src/DateHandler.d.ts
-declare class DateHandler {
-  static get date(): Date;
-  static get hours(): string;
-  static get minutes(): string;
-  static get seconds(): string;
-  static get milliseconds(): string;
-  static get formatted(): string;
-  static get formatted_with_milliseconds(): string;
-}
-//#endregion
-//#region src/types.d.ts
-type LogLevel = 'debug' | 'info' | 'silly' | 'success' | 'error' | 'warning';
-type LogType = 'debug' | 'info' | 'silly' | 'error' | 'warning' | 'success' | 'reset' | 'simple_reset' | 'dim_white';
-//#endregion
-//#region src/logger.d.ts
-declare let logLevel: LogLevel;
-declare const levelPriority: Record<LogLevel, number>;
-declare const colors: Record<LogType, string>;
-declare function logger(level: LogLevel | undefined, message: string): void;
-declare function clear(): void;
-//#endregion
-export { DateHandler, type LogLevel, type LogType, clear, colors, levelPriority, logLevel, logger };
-// made with <3 in chile
+import { DateHandler } from "./classes/DateHandler.mjs";
+import { LogLevel, LogType } from "./types.mjs";
+import Logger, { clear, colors, fatal, levelPriority, log, logLevel } from "./classes/Logger.mjs";
+import { RelativeDate } from "./classes/RelativeDate.mjs";
+export { DateHandler, type LogLevel, type LogType, Logger, RelativeDate, clear, clear as cls, colors, fatal, levelPriority, log, log as logger, logLevel };
+// made with ❤️ in chile

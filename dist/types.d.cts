@@ -9,9 +9,8 @@
 // Build Date: September 23, 2026
 // License: MIT
 //------------------------------------------------------------------------------
-import { DateHandler } from "./classes/DateHandler.cjs";
-import { LogLevel, LogType } from "./types.cjs";
-import Logger, { clear, colors, fatal, levelPriority, log, logLevel } from "./classes/Logger.cjs";
-import { RelativeDate } from "./classes/RelativeDate.cjs";
-export { DateHandler, type LogLevel, type LogType, Logger, RelativeDate, clear, clear as cls, colors, fatal, levelPriority, log, log as logger, logLevel };
+//#region src/types.d.ts
+export type LogLevel = 'debug' | 'info' | 'silly' | 'success' | 'error' | 'warning';
+export type LogType = 'debug' | 'info' | 'silly' | 'error' | 'warning' | 'success' | 'reset' | 'simple_reset' | 'dim_white';
+//#endregion
 // made with ❤️ in chile
